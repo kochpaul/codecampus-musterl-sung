@@ -1,35 +1,26 @@
 # Musterlösung "E-Assessment Plattform" – Python Version
 
-Diese Variante zeigt, wie die vorliegende Musterlösung komplett mit Python umgesetzt werden kann. Die Java-Klassen aus der Originalvorlage wurden durch einfache Python‑Funktionen ersetzt und mit `pytest` getestet.
+Diese Version enthält eine vereinfachte Variante der ursprünglichen Java Musterlösung. Alle Aufgaben sind als Python-Funktionen implementiert und werden mit `pytest` getestet. Nach dem Testlauf wird – analog zur Java-Erweiterung `UniGraderTestResultExtension` – ein Bericht in `target/unitTest-report.json` erzeugt.
 
 ## Projektaufbau
 
-- **`exam_tasks/`** – Enthält die sechs Beispielaufgaben `exam_task1` bis `exam_task6`. Jede Datei stellt eine Funktion bereit, die von den Tests aufgerufen wird. Ein kurzer Ausschnitt aus `exam_task1.py`:
-
-```python
-def are_both_true(param1: bool, param2: bool) -> bool:
-    return param1 and param2
-```
-
-- **`tests/`** – `pytest`‑Tests, die das Verhalten der Funktionen überprüfen. Die Datei `test_tasks.py` enthält direkt umgesetzte Testfälle der ursprünglichen JUnit‑Tests.
-- **`requirements.txt`** (optional) – Falls zusätzliche Bibliotheken benötigt werden, können sie hier eingetragen und mit `pip install -r requirements.txt` installiert werden.
+- **`exam_tasks/`** – Enthält die Aufgaben `exam_task1` bis `exam_task6`. Jede Datei definiert genau eine Funktion.
+- **`tests/`** – Pytest-Testfälle und ein Plugin (`conftest.py`), das die Testergebnisse sammelt und im Java-kompatiblen Format schreibt.
+- **`requirements.txt`** – Optionale Abhängigkeiten, installierbar mit `pip install -r requirements.txt`.
 
 ## Testausführung
 
-Der Testlauf erfolgt mit `pytest`. Innerhalb dieses Containers können die Tests wie folgt gestartet werden:
+Alle Tests lassen sich mit folgendem Befehl starten:
 
 ```bash
 pytest -q
 ```
 
-`pytest` gibt die Ergebnisse für jede Aufgabe aus. Eine Erweiterung könnte die Resultate in eine JSON‑Datei schreiben, ähnlich wie es die Java‑Version mit `UniGraderTestResultExtension` macht.
+Nach dem Lauf befindet sich unter `target/unitTest-report.json` eine JSON-Datei mit denselben Feldern wie im ursprünglichen Java-Projekt (`id`, `name`, `status`, `duration`, `error`).
 
 ## Packaging
 
-Zum Verpacken der Aufgaben und Tests kann einfach ein ZIP‑Archiv erstellt werden, z.B. mittels `zip` oder einem kurzen Python‑Skript. Eine aufwändige Build‑Umgebung wie Maven ist hierfür nicht erforderlich.
-
-Diese Python‑Umsetzung behält den Gedanken der automatisierten Bewertung bei, ist jedoch schlanker und leichter auf andere Sprachen übertragbar.
-=======
+Zur Abgabe können die Aufgaben und Tests einfach gezippt werden, etwa mit `zip -r submission.zip exam_tasks tests`. Eine zusätzliche Build-Umgebung wie Maven wird nicht benötigt.
 # Musterlösung "E-Assessment Plattform"
 
 Dieses Repository demonstriert eine einfache Vorlage für eine programmierbasierte E-Klausur. Die vorliegenden Dateien bilden eine Java-Umgebung, in der mehrere kleine Aufgaben gelöst und über Unit-Tests bewertet werden. Die Ergebnisse können über Maven-Profile zu verschiedenen Archiven (z.B. "blueprint" oder "submission") zusammengefasst werden.
